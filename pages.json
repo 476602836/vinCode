@@ -4,17 +4,7 @@
 		{
 		    "path" : "pages/tabBar/index/index",
 		    "style" : {
-				"navigationBarTitleText": "首页",
-				"app-plus": {
-					"titleNView": {
-						"buttons": [{
-							"text": "\ue534",
-							"fontSrc": "/static/uni.ttf",
-							"fontSize": "22px",
-							"color": "#999999"
-						}]
-					}
-				}
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
@@ -1075,6 +1065,12 @@
 		"borderStyle": "black",
 		"backgroundColor": "#F8F8F8",
 		"list": [{
+				"pagePath": "pages/tabBar/index/index",
+				"iconPath": "static/component.png",
+				"selectedIconPath": "static/componentHL.png",
+				"text": "首页"
+			},
+			{
 				"pagePath": "pages/tabBar/component/component",
 				"iconPath": "static/component.png",
 				"selectedIconPath": "static/componentHL.png",
