@@ -8,6 +8,18 @@
 			}
 		},
 		{
+			"path": "pages/tabBar/index/search/search",
+			"style": {
+				"navigationBarTitleText": "搜索页面"
+			}
+		},
+		{
+			"path": "pages/tabBar/my/my",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
 			"path": "pages/tabBar/component/component",
 			"style": {
 				"navigationBarTitleText": "内置组件",
@@ -553,6 +565,14 @@
             "path" : "pages/tabBar/index/index",
             "style" : {}
         }
+        ,{
+            "path" : "pages/index/search/search",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/tabBar/my/my",
+            "style" : {}
+        }
     ],
 	"subPackages": [{
 			"root": "pages/extUI",
@@ -1071,27 +1091,27 @@
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/tabBar/component/component",
-				"iconPath": "static/component.png",
-				"selectedIconPath": "static/componentHL.png",
-				"text": "内置组件"
-			},
-			{
-				"pagePath": "pages/tabBar/API/API",
+				"pagePath": "pages/tabBar/my/my",
 				"iconPath": "static/api.png",
 				"selectedIconPath": "static/apiHL.png",
-				"text": "接口"
-			}, {
-				"pagePath": "pages/tabBar/extUI/extUI",
-				"iconPath": "static/extui.png",
-				"selectedIconPath": "static/extuiHL.png",
-				"text": "扩展组件"
-			}, {
-				"pagePath": "pages/tabBar/template/template",
-				"iconPath": "static/template.png",
-				"selectedIconPath": "static/templateHL.png",
-				"text": "模板"
+				"text": "我的"
 			}
+			// {
+			// 	"pagePath": "pages/tabBar/API/API",
+			// 	"iconPath": "static/api.png",
+			// 	"selectedIconPath": "static/apiHL.png",
+			// 	"text": "接口"
+			// }, {
+			// 	"pagePath": "pages/tabBar/extUI/extUI",
+			// 	"iconPath": "static/extui.png",
+			// 	"selectedIconPath": "static/extuiHL.png",
+			// 	"text": "扩展组件"
+			// }, {
+			// 	"pagePath": "pages/tabBar/template/template",
+			// 	"iconPath": "static/template.png",
+			// 	"selectedIconPath": "static/templateHL.png",
+			// 	"text": "模板"
+			// }
 		]
 	}
 }
