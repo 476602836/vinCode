@@ -2,12 +2,14 @@
 	<view>
 	<view >
 		<view class="uni-center" style="background:#FFFFFF; font-size:0;">
-			<image class="image" mode="widthFix" src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png" />
+			<image class="image" mode="widthFix" :src="user.avatar" />
 		</view>
 	</view>
 	<uni-list>
-		<uni-list-item title="我的查询" thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/hx.png" />
-		<uni-list-item title="我的车辆" note="" thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" />
+		<uni-list-item @tap="mysearch" title="我的查询" thumb="http://weiqing.zxiu58.top/icons/1.png" />
+		<uni-list-item title="我的推广" note="" thumb="http://weiqing.zxiu58.top/icons/2.png" />
+		<uni-list-item @tap="fuzhi" title="推广链接" note="" thumb="http://weiqing.zxiu58.top/icons/3.png" />
+		<uni-list-item title="推广奖励" note="" thumb="http://weiqing.zxiu58.top/icons/4.png" />
 	</uni-list>
 	</view>
 </template>
@@ -15,7 +17,7 @@
 <script>
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
-	
+	import {clipboard} from '../../../js_sdk/ican-clipBoard/ican-clipBoard.js'
 	export default {
 		components: {
 			uniList,
@@ -23,11 +25,24 @@
 		},
 		data() {
 			return {
-				
+				user:uni.getStorageSync('user')
 			}
 		},
 		methods: {
-			
+			mysearch(){
+				uni.navigateTo({
+					url: 'mysearch/mysearch',
+				})
+			},
+			fuzhi(){
+				uni.setClipboardData({ data:'', success:function(data){
+					uni.showToast({
+						title: "复制链接成功",
+						icon: "info-filled",
+						duration: 1000
+					})
+				}, fail:function(err){}, complete:function(res){} })
+			}
 		}
 	}
 </script>

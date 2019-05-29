@@ -53,6 +53,11 @@
 	import mpvueCityPicker from '../../../components/mpvue-citypicker/mpvueCityPicker.vue'
 	import cityData from '../../../common/car.data.js';
 	import jweixin from '../../../common/wxpay.js';
+	
+	var siteurl = "http://weiqing.zxiu58.top/"
+	var siteapi = "http://weiqing.zxiu58.top/app/index.php?i=3&c=entry&m=ab_vin"
+	
+	
 	var sourceType = [
 		['camera'],
 		['album'],
@@ -209,13 +214,22 @@
 				//uni.setStorageSync('vins','');
 				if(-1==uni.getStorageSync('vins').indexOf(this.vin))uni.setStorageSync('vins',uni.getStorageSync('vins')+','+this.vin);
 				console.log(uni.getStorageSync('vins').indexOf(this.vin))
+				location.href ='http://weiqing.zxiu58.top/app/index.php?i=3&c=entry&do=pay&m=ab_vin&fee=0.01&uid=4&vin=LVSFCAMEX8F265694';return;
 				uni.navigateTo({
-					url: 'search/search?data='+this.vin
+					//url: 'search/search?data='+this.vin,
+					url: 'pay/pay?fee='+5
 				})
 			},
 			chooseImage: async function() {
 					uni.chooseImage({
 						success: (chooseImageRes) => {
+							
+							uni.showToast({
+								title: "正在检测vin码...",
+								icon: "loading",
+								duration: 15000
+							})
+							
 							const tempFilePaths = chooseImageRes.tempFilePaths;
 							uni.uploadFile({
 								url: 'http://weiqing.zxiu58.top/app/index.php?i=3&c=entry&op=index&do=Upload2&m=ab_qrcode', //仅为示例，非真实的接口地址
@@ -225,9 +239,23 @@
 									'user': 'test'
 								},
 								success: (uploadFileRes) => {
-									uploadFileRes.data = "2GFD5G5G4HG45GH78"
+									//uploadFileRes.data = "2GFD5G5G4HG45GH78"
 									console.log(uploadFileRes.data);
-									this.vin = uploadFileRes.data
+									var vinData = JSON.parse(uploadFileRes.data);
+									if(vinData.errno==1){
+										uni.showToast({
+											title: "未检测到VIN码",
+											icon: "info-filled",
+											duration: 1000
+										})
+										return;
+									}
+									uni.showToast({
+										title: "已检测到VIN码",
+										icon: "info-filled",
+										duration: 1000
+									})
+									this.vin = vinData.Vin
 								}
 							});
 						}
@@ -288,27 +316,47 @@
 		},
 		
 		onLoad() {
-			// try {
-			// 	this.vins = uni.getStorageSync('vins');
-			// 	if (this.vins) {
-			// 		console.log(this.vins);
-			// 	}else{
-			// 		uni.setStorageSync('vins', []);
-			// 	}
-			// } catch (e) {
-			// 	// error
-			// }
+			
+			var search = getQueryString('search')
+			if(search){
+				uni.navigateTo({
+					url: 'search/search?data='+search,
+				})
+			}
+			
+			
+			var user = uni.getStorageSync('user')
+			if(!user){
+				var uid = getQueryString('uid')
+				uni.request({
+					url: siteapi, //仅为示例，并非真实接口地址。
+					data: {
+						do: 'ajax',
+						op: 'user',
+						uid:uid
+					},
+					header: {
+						//'custom-header': 'hello' //自定义请求头信息
+					},
+					success: (res) => {
+						console.log(res.data);
+						if(res.data.errno==0){
+							uni.setStorageSync('user',res.data.data);
+						}
+					}
+				});
+			}
+			console.log(uni.getStorageSync('user'))
 			this.platform = uni.getSystemInfoSync().platform
 		}
 
 	}
-	//uni.showTabBar();
-	// uni.setTabBarItem({
-	//   "pagePath": "pages/tabBar/component/component",
-	//   "iconPath": "static/component.png",
-	//   "selectedIconPath": "static/componentHL.png",
-	//   "text": "内置组件"
-	// })
+	function getQueryString(name) { 
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+        var r = window.location.search.substr(1).match(reg); 
+        if (r != null) return unescape(r[2]); 
+        return null; 
+    } 
 </script>
 
 <style>

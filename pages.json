@@ -8,6 +8,12 @@
 			}
 		},
 		{
+		    "path" : "pages/tabBar/index/pay/pay",
+		    "style" : {
+				"navigationBarTitleText": "支付页面"
+			}
+		},
+		{
 			"path": "pages/tabBar/index/search/search",
 			"style": {
 				"navigationBarTitleText": "搜索页面"
@@ -17,6 +23,12 @@
 			"path": "pages/tabBar/my/my",
 			"style": {
 				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/tabBar/my/mysearch/mysearch",
+			"style": {
+				"navigationBarTitleText": "我的查询"
 			}
 		},
 		{
@@ -561,16 +573,26 @@
 			}
 		}
 	    
+        // ,{
+        //     "path" : "pages/tabBar/index/index",
+        //     "style" : {}
+        // }
         ,{
-            "path" : "pages/tabBar/index/index",
-            "style" : {}
+            "path" : "pages/tabBar/index/search/search",
+            "style" : {
+				"navigationBarTitleText": "查询结果"
+			}
         }
+        // ,{
+        //     "path" : "pages/tabBar/my/my",
+        //     "style" : {}
+        // }
+        // ,{
+        //     "path" : "pages/tabBar/index/pay/pay",
+        //     "style" : {}
+        // }
         ,{
-            "path" : "pages/index/search/search",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/tabBar/my/my",
+            "path" : "pages/tabBar/my/mysearch/mysearch",
             "style" : {}
         }
     ],

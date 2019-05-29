@@ -2,11 +2,12 @@
 	<view class="root">
 		<page-head :title="title"></page-head>
 		<view class="page-body">
-			{{data}}
+			{{data}}的查询结果
 		</view>
 	</view>
 </template>
 <script>
+	
 	export default {
 		data() {
 			return {
@@ -20,6 +21,7 @@
 			}
 		}
 	}
+	
 </script>
 <style>
 	page{
