@@ -32,6 +32,12 @@
 			}
 		},
 		{
+			"path": "pages/tabBar/my/myteam/myteam",
+			"style": {
+				"navigationBarTitleText": "我的推广"
+			}
+		},
+		{
 			"path": "pages/tabBar/component/component",
 			"style": {
 				"navigationBarTitleText": "内置组件",
@@ -595,6 +601,10 @@
             "path" : "pages/tabBar/my/mysearch/mysearch",
             "style" : {}
         }
+        ,{
+            "path" : "pages/tabBar/my/myteam/myteam",
+            "style" : {}
+        }
     ],
 	"subPackages": [{
 			"root": "pages/extUI",
@@ -1108,14 +1118,14 @@
 		"backgroundColor": "#F8F8F8",
 		"list": [{
 				"pagePath": "pages/tabBar/index/index",
-				"iconPath": "static/component.png",
-				"selectedIconPath": "static/componentHL.png",
+				"iconPath": "static/index.png",
+				"selectedIconPath": "static/indexHL.png",
 				"text": "首页"
 			},
 			{
 				"pagePath": "pages/tabBar/my/my",
-				"iconPath": "static/api.png",
-				"selectedIconPath": "static/apiHL.png",
+				"iconPath": "static/my.png",
+				"selectedIconPath": "static/myHL.png",
 				"text": "我的"
 			}
 			// {

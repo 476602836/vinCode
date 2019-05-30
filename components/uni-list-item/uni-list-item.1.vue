@@ -11,11 +11,10 @@
 				<view class="uni-list-item__content-title">{{ title }}</view>
 				<view v-if="note" class="uni-list-item__content-note">{{ note }}</view>
 			</view>
-			<view v-if="showBadge || showArrow || showSwitch || showText" class="uni-list-item__extra">
+			<view v-if="showBadge || showArrow || showSwitch" class="uni-list-item__extra">
 				<uni-badge v-if="showBadge" :type="badgeType" :text="badgeText" />
 				<switch v-if="showSwitch" :disabled="disabled" :checked="switchChecked" @change="onSwitchChange" />
 				<uni-icon v-if="showArrow" :size="20" color="#bbb" type="arrowright" />
-				<view>{{text}}</view>
 			</view>
 		</view>
 	</view>
@@ -46,14 +45,6 @@
 			showArrow: { // 是否显示箭头
 				type: Boolean,
 				default: true
-			},
-			showText: { // 是否显示箭头
-				type: Boolean,
-				default: false
-			},
-			text:{
-				type: String,
-				default: ''
 			},
 			showBadge: { // 是否显示数字角标
 				type: Boolean,
@@ -182,7 +173,7 @@
 	}
 
 	.uni-list-item__extra {
-		width: 45%;
+		width: 25%;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;

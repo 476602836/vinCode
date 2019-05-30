@@ -1,9 +1,18 @@
 <template>
 	<view>
-		<uni-list>
-			<uni-list-item :show-badge="true"  :title="value.vin" v-for="(value, key) in list" :key="key"/>
-			<!-- <uni-list-item :show-badge="true" :badge-text="12" title="标题文字" /> -->
-		</uni-list>
+		<view class="uni-list">
+			<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(value,key) in list" :key="key">
+				<view class="uni-media-list">
+					<view class="uni-media-list-logo">
+						<image :src="value.avatar"></image>
+					</view>
+					<view class="uni-media-list-body">
+						<view class="uni-media-list-text-top">{{value.nickname}}</view>
+						<view class="uni-media-list-text-bottom uni-ellipsis">{{value.create_time}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -12,6 +21,8 @@
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	import site from '../../../../common/site.js';
 	
+	var user = uni.getStorageSync('user')
+	
 	export default {
 		components: {
 			uniList,
@@ -19,21 +30,18 @@
 		},
 		data() {
 			return {
-				list : []
+				list:[]
 			}
 		},
 		methods: {
 			
 		},
 		onLoad(){
-			
-			var user = uni.getStorageSync('user')
-			console.log(user)
 			uni.request({
 				url: site.siteapi, //仅为示例，并非真实接口地址。
 				data: {
 					do: 'ajax',
-					op: 'vin',
+					op: 'myteam',
 					uid: user.id
 				},
 				header: {
@@ -47,12 +55,11 @@
 				}
 			});
 		}
-		
 	}
-	
-	
 </script>
 
 <style>
-
+	.uni-list-item{
+		height: 150upx;
+	}
 </style>

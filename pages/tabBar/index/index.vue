@@ -52,11 +52,8 @@
 	// https://github.com/zhetengbiji/mpvue-citypicker
 	import mpvueCityPicker from '../../../components/mpvue-citypicker/mpvueCityPicker.vue'
 	import cityData from '../../../common/car.data.js';
-	import jweixin from '../../../common/wxpay.js';
-	
-	var siteurl = "http://weiqing.zxiu58.top/"
-	var siteapi = "http://weiqing.zxiu58.top/app/index.php?i=3&c=entry&m=ab_vin"
-	
+	import site from '../../../common/site.js';
+	import jweixin from '../../../common/wxpay.js';	
 	
 	var sourceType = [
 		['camera'],
@@ -213,8 +210,9 @@
 				});
 				//uni.setStorageSync('vins','');
 				if(-1==uni.getStorageSync('vins').indexOf(this.vin))uni.setStorageSync('vins',uni.getStorageSync('vins')+','+this.vin);
-				console.log(uni.getStorageSync('vins').indexOf(this.vin))
-				location.href ='http://weiqing.zxiu58.top/app/index.php?i=3&c=entry&do=pay&m=ab_vin&fee=0.01&uid=4&vin=LVSFCAMEX8F265694';return;
+				//console.log(site.siteapi+"&do=pay&fee=0.01&uid=4&vin="+this.vin);return;
+				location.href = site.siteapi+"&do=pay&fee=0.01&uid=4&vin="+this.vin;return;
+				//'http://weiqing.zxiu58.top/app/index.php?i=3&c=entry&do=pay&m=ab_vin&fee=0.01&uid=4&vin=LVSFCAMEX8F265694';return;
 				uni.navigateTo({
 					//url: 'search/search?data='+this.vin,
 					url: 'pay/pay?fee='+5
@@ -238,24 +236,24 @@
 								formData: {
 									'user': 'test'
 								},
-								success: (uploadFileRes) => {
-									//uploadFileRes.data = "2GFD5G5G4HG45GH78"
+								complete: (uploadFileRes) => {
 									console.log(uploadFileRes.data);
 									var vinData = JSON.parse(uploadFileRes.data);
-									if(vinData.errno==1){
+									if(vinData.Vin){
 										uni.showToast({
-											title: "未检测到VIN码",
+											title: "已检测到VIN码",
 											icon: "info-filled",
 											duration: 1000
 										})
+										this.vin = vinData.Vin;
 										return;
 									}
 									uni.showToast({
-										title: "已检测到VIN码",
+										title: "未检测到VIN码",
 										icon: "info-filled",
 										duration: 1000
 									})
-									this.vin = vinData.Vin
+									
 								}
 							});
 						}
@@ -329,7 +327,7 @@
 			if(!user){
 				var uid = getQueryString('uid')
 				uni.request({
-					url: siteapi, //仅为示例，并非真实接口地址。
+					url: site.siteapi, //仅为示例，并非真实接口地址。
 					data: {
 						do: 'ajax',
 						op: 'user',
